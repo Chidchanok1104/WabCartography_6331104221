@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href=https://unpkg.com/leaflet@1.9.3/dist/leaflet.css integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <script src=https://unpkg.com/leaflet@1.9.3/dist/leaflet.js integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+</head>
+<body>
+    <div id="map" style="height: 600px"></div>
+    <script>
+        var map = L.map('map').setView([13.7563, 100.5018], 10);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'})
+            .addTo(map);
+
+        // Adding 5 temples in Bangkok
+        var temples = [
+            {
+                name: "Wat Phra Kaew",
+                location: [13.7500, 100.4918],
+                img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%94%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1.jpg"
+            },
+            {
+                name: "Wat Arun",
+                location: [13.7436, 100.4869],
+                img: "https://upload.wikimedia.org/wikipedia/commons/0/09/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%93%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%A7%E0%B8%A3%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3_17.jpg"
+            },
+            {
+                name: "Wat Pho",
+                location: [13.7461, 100.4925],
+                img: "https://upload.wikimedia.org/wikipedia/commons/8/82/02-%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%8A%E0%B8%95%E0%B8%B8%E0%B8%9E%E0%B8%99%E0%B8%A7%E0%B8%B4%E0%B8%A1%E0%B8%A5%E0%B8%A1%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1.jpg"
+            },
+            {
+                name: "Wat Saket",
+                location: [13.7536, 100.5064],
+                img: "https://upload.wikimedia.org/wikipedia/commons/2/2b/%282019%29_%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%81%E0%B8%A8%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3_%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9B%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%9A%E0%B8%A8%E0%B8%B1%E0%B8%95%E0%B8%A3%E0%B8%B9%E0%B8%9E%E0%B9%88%E0%B8%B2%E0%B8%A2_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_%2816%29.jpg"
+            },
+            {
+                name: "Wat Traimit",
+                location: [13.7375, 100.5165],
+                img: "https://upload.wikimedia.org/wikipedia/commons/6/60/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%95%E0%B8%A3%E0%B8%A1%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%A7%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3_%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_%2860%29.jpg"
+            }
+        ];
+
+        temples.forEach(function(temple) {
+            var icon = L.icon({
+                iconUrl: temple.img,
+                iconSize: [50, 50],
+                iconAnchor: [25, 25],
+                popupAnchor: [0, -25]
+            });
+            var marker = L.marker(temple.location, {icon: icon})
+                .addTo(map);
+            marker.bindPopup("<b>" + temple.name + "</b><br><img src='" + temple.img + "' alt='" + temple.name + "' style='width:200px;height:150px;'>")
+                .openPopup();
+        });
+    var marker = L.marker([13.7500, 100.4918]).addTo(map);
+    var marker = L.marker([13.7436, 100.4869]).addTo(map);
+    var marker = L.marker([13.7461, 100.4925]).addTo(map);
+    var marker = L.marker([13.7536, 100.5064]).addTo(map);
+    var marker = L.marker([13.7375, 100.5165]).addTo(map);
+</script>
+</body>
+</html>
